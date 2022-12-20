@@ -26,8 +26,8 @@
 
         {{-- Email field --}}
         <div class="input-group mb-3">
-            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                   value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}" autofocus>
+            <input type="text" name="usuario" class="form-control @error('usuario') is-invalid @enderror"
+                   value="{{ old('usuario') }}" placeholder="Usuario" autofocus>
 
             <div class="input-group-append">
                 <div class="input-group-text">
@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            @error('email')
+            @error('usuario')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
