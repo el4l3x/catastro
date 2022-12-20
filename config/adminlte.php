@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => false,
+    'use_ico_only' => true,
     'use_full_favicon' => false,
 
     /*
@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>Catastro</b>Zamora',
-    'logo_img' => 'vendor/adminlte/dist/img/1.png',
+    'logo_img' => 'vendor/adminlte/dist/img/logo3.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -109,8 +109,8 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-            'alt' => 'AdminLTE Preloader Image',
+            'path' => 'vendor/adminlte/dist/img/logo.png',
+            'alt' => 'Cargando...',
             'effect' => 'animation__shake',
             'width' => 60,
             'height' => 60,
@@ -133,7 +133,7 @@ return [
     'usermenu_header' => false,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
-    'usermenu_desc' => false,
+    'usermenu_desc' => true,
     'usermenu_profile_url' => false,
 
     /*
@@ -150,9 +150,9 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
-    'layout_fixed_footer' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => ['xs' => false, 'sm' => false, 'md' => true, 'lg' => true, 'xl' => true],
+    'layout_fixed_footer' => ['xs' => false, 'sm' => false, 'md' => true, 'lg' => true, 'xl' => true],
     'layout_dark_mode' => null,
 
     /*
@@ -193,9 +193,9 @@ return [
     'classes_content_header' => '',
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
-    'classes_sidebar_nav' => '',
+    'classes_sidebar_nav' => 'nav-child-indent nav-compact',
     'classes_topnav' => 'navbar-white navbar-light',
-    'classes_topnav_nav' => 'navbar-expand',
+    'classes_topnav_nav' => 'navbar-expand-md',
     'classes_topnav_container' => 'container',
 
     /*
@@ -210,10 +210,10 @@ return [
     |
     */
 
-    'sidebar_mini' => 'lg',
-    'sidebar_collapse' => false,
+    'sidebar_mini' => 'md',
+    'sidebar_collapse' => true,
     'sidebar_collapse_auto_size' => false,
-    'sidebar_collapse_remember' => false,
+    'sidebar_collapse_remember' => true,
     'sidebar_collapse_remember_no_transition' => true,
     'sidebar_scrollbar_theme' => 'os-theme-light',
     'sidebar_scrollbar_auto_hide' => 'l',
@@ -253,13 +253,13 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => '/dashboard',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
-    'profile_url' => false,
+    'profile_url' => 'user/profile',
 
     /*
     |--------------------------------------------------------------------------
@@ -290,99 +290,56 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
+        //Navbar
         [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
+            'type'          => 'fullscreen-widget',
+            'topnav_right'  => true,
+        ],
+        //Sidebar
+        [
+            'header' => 'ARCHIVO',
         ],
         [
-            'type'         => 'fullscreen-widget',
-            'topnav_right' => true,
-        ],
-
-        // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
+            'text'      => 'Contribuyentes',
+            'icon'      => 'fas fa-user-tie',
+            /* 'submenu'   => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text'      => 'Juridicos',
+                    'route'     => 'juridicos.index',
+                    'active'    => ['juridicos*'],
+                    'can'       => 'juridicos.index'
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
+                    'text'      => 'Naturales',
+                    'route'     => 'naturales.index',
+                    'active'    => ['naturales*'],
+                    'can'       => 'naturales.index'
+                ]
+            ] */
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
+            'header'    => 'SEGURIDAD',
+        ],
+        /* [
+            'text'   => 'Bitacora',
+            'route'    => 'logs.index',
+            'active' => ['logs*'],
+            'can'    => 'logs.index',
         ],
         [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'text'   => 'Roles',
+            'route'    => 'roles.index',
+            'icon' => 'fas fa-fw fa-users-cog',
+            'active' => ['roles*'],
+            'can'    => 'roles.index',
         ],
+        [
+            'text'   => 'Usuarios',
+            'route'    => 'usuarios.index',
+            'icon' => 'fas fa-fw fa-users',
+            'active' => ['users*'],
+            'can'    => 'users.index',
+        ], */
     ],
 
     /*
@@ -537,5 +494,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];
