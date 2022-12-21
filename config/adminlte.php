@@ -320,13 +320,13 @@ return [
         [
             'header'    => 'SEGURIDAD',
         ],
-        /* [
+        [
             'text'   => 'Bitacora',
             'route'    => 'logs.index',
             'active' => ['logs*'],
             'can'    => 'logs.index',
         ],
-        [
+        /* [
             'text'   => 'Roles',
             'route'    => 'roles.index',
             'icon' => 'fas fa-fw fa-users-cog',
