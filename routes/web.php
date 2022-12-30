@@ -31,7 +31,7 @@ Route::middleware([
 
     Route::resources([
         'logs' => LogController::class,
-        'Roles' => RoleController::class,
+        'roles' => RoleController::class,
         'usuarios' => UsuarioController::class,
     ]);
 });

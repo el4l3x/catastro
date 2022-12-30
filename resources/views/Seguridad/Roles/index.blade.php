@@ -3,8 +3,8 @@
 @section('title', 'Roles')
 
 @section('content_header')
-    @can('users.create')
-        <a class="btn btn-gray btn-sm float-right" type="button" href="{{ route('roles.create') }}">Nuevo Rol</a>
+    @can('roles.create')
+        <a class="btn btn-secondary btn-sm float-right" type="button" href="{{ route('roles.create') }}">Nuevo Rol</a>
     @endcan
     <h3>Roles de Usuario</h3>
 @stop
@@ -37,13 +37,13 @@
                                     <td>{{ $role->name }}</td>
                                     <td>
                                         @can('roles.edit')
-                                            <a href="{{ route('roles.edit', $role) }}" title="Editar" class="btn btn-xs btn-dark gray-text mx-1 shadow">
+                                            <a href="{{ route('roles.edit', $role) }}" title="Editar" class="btn btn-sm btn-secondary mx-1 shadow">
                                                 <i class="fa fa-fw fa-edit"></i>
                                             </a>
                                         @endcan
 
                                         @can('roles.destroy')
-                                            <button title="Eliminar" class="btn btn-xs btn-dark gray-text mx-1 shadow" onclick="event.preventDefault();
+                                            <button title="Eliminar" class="btn btn-sm btn-secondary mx-1 shadow" onclick="event.preventDefault();
                                             document.getElementById({{$role->id}}).submit();">
                                                 <i class="fa fw fa-trash"></i>
                                             </button>
