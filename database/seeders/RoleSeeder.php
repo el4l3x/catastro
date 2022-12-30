@@ -25,5 +25,39 @@ class RoleSeeder extends Seeder
             'name' => 'logs.index',
             'description' => 'Ver Bitacora',
         ])->syncRoles([$roleAdm, $roleObs, $roleSup]);
+
+        Permission::create([
+            'name' => 'roles.index',
+            'description' => 'Ver Roles de Usuarios',
+        ])->syncRoles([$roleAdm, $roleObs, $roleSup]);
+        Permission::create([
+            'name' => 'roles.create',
+            'description' => 'Crear un Rol de Usuario',
+        ])->syncRoles([$roleAdm, $roleReg, $roleSup]);
+        Permission::create([
+            'name' => 'roles.edit',
+            'description' => 'Editar un Rol de Usuario',
+        ])->syncRoles([$roleAdm, $roleSup]);
+        Permission::create([
+            'name' => 'roles.destroy',
+            'description' => 'Eliminar un Rol de Usuario',
+        ])->syncRoles([$roleAdm, $roleSup]);
+        
+        Permission::create([
+            'name' => 'usuarios.index',
+            'description' => 'Ver Usuarios',
+        ])->syncRoles([$roleAdm, $roleObs, $roleSup]);
+        Permission::create([
+            'name' => 'usuarios.create',
+            'description' => 'Crear un Usuario',
+        ])->syncRoles([$roleAdm, $roleSup]);
+        Permission::create([
+            'name' => 'usuarios.edit',
+            'description' => 'Editar un Usuario',
+        ])->syncRoles([$roleAdm, $roleSup]);
+        Permission::create([
+            'name' => 'usuarios.destroy',
+            'description' => 'Eliminar un Usuario',
+        ])->syncRoles([$roleAdm, $roleSup]);
     }
 }

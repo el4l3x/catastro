@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Catastro Zamora',
+    'title' => 'Archivo Zamora',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,12 +63,12 @@ return [
     |
     */
 
-    'logo' => '<b>Catastro</b>Zamora',
+    'logo' => '<b>Archivo</b>Zamora',
     'logo_img' => 'vendor/adminlte/dist/img/logo3.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Catastro Logo',
+    'logo_img_alt' => 'Zamora Logo',
 
     /*
     |--------------------------------------------------------------------------
@@ -87,7 +87,7 @@ return [
         'enabled' => true,
         'img' => [
             'path' => 'vendor/adminlte/dist/img/1.png',
-            'alt' => 'Catastro Logo',
+            'alt' => 'Archivo Logo',
             'class' => '',
             'width' => 50,
             'height' => 50,
@@ -300,7 +300,7 @@ return [
             'header' => 'ARCHIVO',
         ],
         [
-            'text'      => 'Contribuyentes',
+            'text'      => 'Ciudadanos',
             'icon'      => 'fas fa-user-tie',
             /* 'submenu'   => [
                 [
@@ -332,14 +332,14 @@ return [
             'icon' => 'fas fa-fw fa-users-cog',
             'active' => ['roles*'],
             'can'    => 'roles.index',
-        ],
+        ], */
         [
             'text'   => 'Usuarios',
             'route'    => 'usuarios.index',
             'icon' => 'fas fa-fw fa-users',
-            'active' => ['users*'],
-            'can'    => 'users.index',
-        ], */
+            'active' => ['usuarios*'],
+            'can'    => 'usuarios.index',
+        ],
     ],
 
     /*
@@ -382,18 +382,63 @@ return [
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables/js/dataTables.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                    'asset' => true,
+                    'location' => 'vendor/datatables/css/dataTables.bootstrap4.min.css',
+                ],
+            ],
+        ],
+        'DatatablesPlugins' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/js/dataTables.buttons.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/js/buttons.bootstrap4.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/js/buttons.html5.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/js/buttons.print.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/jszip/jszip.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/pdfmake/pdfmake.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/pdfmake/vfs_fonts.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/datatables-plugins/buttons/css/buttons.bootstrap4.min.css',
                 ],
             ],
         ],

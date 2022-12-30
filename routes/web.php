@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,5 +31,7 @@ Route::middleware([
 
     Route::resources([
         'logs' => LogController::class,
+        'Roles' => RoleController::class,
+        'usuarios' => UsuarioController::class,
     ]);
 });
