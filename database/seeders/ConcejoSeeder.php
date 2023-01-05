@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comuna;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class ConcejoSeeder extends Seeder
 {
@@ -14,6 +16,6 @@ class ConcejoSeeder extends Seeder
      */
     public function run()
     {
-        //
+        
     }
 }

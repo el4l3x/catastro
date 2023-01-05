@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comuna>
@@ -16,8 +17,11 @@ class ComunaFactory extends Factory
      */
     public function definition()
     {
+        $nombre = $this->faker->unique()->sentence(3);
+
         return [
-            //
+            'nombre' => $nombre,
+            'slug' => Str::slug($nombre),
         ];
     }
 }
