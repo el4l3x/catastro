@@ -314,6 +314,12 @@ return [
                     'route'     => 'concejos.index',
                     'active'    => ['concejos*'],
                     'can'       => 'concejos.index',
+                ],
+                [
+                    'text'      => 'Parroquias',
+                    'route'     => 'parroquias.index',
+                    'active'    => ['parroquias*'],
+                    'can'       => 'parroquias.index',
                 ]
             ]
         ],

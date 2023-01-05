@@ -93,5 +93,40 @@ class RoleSeeder extends Seeder
             'name' => 'concejos.destroy',
             'description' => 'Eliminar un Concejo Comunal',
         ])->syncRoles([$roleAdm, $roleSup]);
+        
+        Permission::create([
+            'name' => 'parroquias.index',
+            'description' => 'Ver Parroquias',
+        ])->syncRoles([$roleAdm, $roleSup, $roleObs]);
+        Permission::create([
+            'name' => 'parroquias.create',
+            'description' => 'Crear una Parroquia',
+        ])->syncRoles([$roleAdm, $roleSup, $roleReg]);
+        Permission::create([
+            'name' => 'parroquias.edit',
+            'description' => 'Editar una Parroquia',
+        ])->syncRoles([$roleAdm, $roleSup]);
+        Permission::create([
+            'name' => 'parroquias.destroy',
+            'description' => 'Eliminar una Parroquia',
+        ])->syncRoles([$roleAdm, $roleSup]);
+        
+        Permission::create([
+            'name' => 'personas.index',
+            'description' => 'Ver Ciudadanos',
+        ])->syncRoles([$roleAdm, $roleSup, $roleObs]);
+        Permission::create([
+            'name' => 'personas.create',
+            'description' => 'Agregar Ciudadano',
+        ])->syncRoles([$roleAdm, $roleSup, $roleReg]);
+        Permission::create([
+            'name' => 'personas.edit',
+            'description' => 'Editar Ciudadano',
+        ])->syncRoles([$roleAdm, $roleSup]);
+        Permission::create([
+            'name' => 'personas.destroy',
+            'description' => 'Eliminar Ciudadano',
+        ])->syncRoles([$roleAdm, $roleSup]);
+
     }
 }

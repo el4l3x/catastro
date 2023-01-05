@@ -3,6 +3,7 @@
 use App\Http\Controllers\ComunaController;
 use App\Http\Controllers\ConcejoController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\ParroquiaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
@@ -37,5 +38,6 @@ Route::middleware([
         'usuarios' => UsuarioController::class,
         'comunas' => ComunaController::class,
         'concejos' => ConcejoController::class,
+        'parroquias' => ParroquiaController::class,
     ]);
 });
