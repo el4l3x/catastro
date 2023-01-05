@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Comuna extends Model
+class Concejo extends Model
 {
     use HasFactory;
 
@@ -15,7 +16,7 @@ class Comuna extends Model
         return Attribute::make(
             get: fn ($value) => ucwords($value),
             set: fn ($value) => strtolower($value),
-        );        
+        );
     }
 
     public function getRouteKeyName()
@@ -23,8 +24,8 @@ class Comuna extends Model
         return "slug";
     }
 
-    public function concejos()
+    public function comuna()
     {
-        return $this->hasMany(Concejo::class);
+        return $this->BelongsTo(Comuna::class);
     }
 }

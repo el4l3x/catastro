@@ -3,7 +3,7 @@
 @section('title', 'Comunas')
 
 @section('content_header')
-    <h1>Editar comuna {{ $comuna->name }}</h1>
+    <h1>Editar comuna {{ $comuna->nombre }}</h1>
 @stop
 
 @section('content')

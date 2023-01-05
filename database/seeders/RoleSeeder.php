@@ -76,5 +76,22 @@ class RoleSeeder extends Seeder
             'name' => 'comunas.destroy',
             'description' => 'Eliminar una Comuna',
         ])->syncRoles([$roleAdm, $roleSup]);
+
+        Permission::create([
+            'name' => 'concejos.index',
+            'description' => 'Ver Concejos Comunales',
+        ])->syncRoles([$roleAdm, $roleSup, $roleObs]);
+        Permission::create([
+            'name' => 'concejos.create',
+            'description' => 'Crear un Concejo Comunal',
+        ])->syncRoles([$roleAdm, $roleSup, $roleReg]);
+        Permission::create([
+            'name' => 'concejos.edit',
+            'description' => 'Editar un Concejo Comunal',
+        ])->syncRoles([$roleAdm, $roleSup]);
+        Permission::create([
+            'name' => 'concejos.destroy',
+            'description' => 'Eliminar un Concejo Comunal',
+        ])->syncRoles([$roleAdm, $roleSup]);
     }
 }

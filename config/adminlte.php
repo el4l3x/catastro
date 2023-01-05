@@ -309,6 +309,12 @@ return [
                     'active'    => ['comunas*'],
                     'can'       => 'comunas.index'
                 ],
+                [
+                    'text'      => 'Concejos Comunales',
+                    'route'     => 'concejos.index',
+                    'active'    => ['concejos*'],
+                    'can'       => 'concejos.index',
+                ]
             ]
         ],
         [
