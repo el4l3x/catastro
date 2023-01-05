@@ -297,25 +297,19 @@ return [
         ],
         //Sidebar
         [
-            'header' => 'ARCHIVO',
+            'header' => 'ESTRUCTURAS',
         ],
         [
-            'text'      => 'Ciudadanos',
+            'text'      => 'Comunas',
             'icon'      => 'fas fa-user-tie',
-            /* 'submenu'   => [
+            'submenu'   => [
                 [
-                    'text'      => 'Juridicos',
-                    'route'     => 'juridicos.index',
-                    'active'    => ['juridicos*'],
-                    'can'       => 'juridicos.index'
+                    'text'      => 'Comunas',
+                    'route'     => 'comunas.index',
+                    'active'    => ['comunas*'],
+                    'can'       => 'comunas.index'
                 ],
-                [
-                    'text'      => 'Naturales',
-                    'route'     => 'naturales.index',
-                    'active'    => ['naturales*'],
-                    'can'       => 'naturales.index'
-                ]
-            ] */
+            ]
         ],
         [
             'header'    => 'SEGURIDAD',
@@ -323,6 +317,7 @@ return [
         [
             'text'   => 'Bitacora',
             'route'    => 'logs.index',
+            'icon' => 'fas fa-clipboard-list',
             'active' => ['logs*'],
             'can'    => 'logs.index',
         ],

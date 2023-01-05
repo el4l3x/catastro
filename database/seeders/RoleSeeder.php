@@ -59,5 +59,22 @@ class RoleSeeder extends Seeder
             'name' => 'usuarios.destroy',
             'description' => 'Eliminar un Usuario',
         ])->syncRoles([$roleAdm, $roleSup]);
+
+        Permission::create([
+            'name' => 'comunas.index',
+            'description' => 'Ver Comunas',
+        ])->syncRoles([$roleAdm, $roleSup, $roleObs]);
+        Permission::create([
+            'name' => 'comunas.create',
+            'description' => 'Crear una Comuna',
+        ])->syncRoles([$roleAdm, $roleSup, $roleReg]);
+        Permission::create([
+            'name' => 'comunas.edit',
+            'description' => 'Editar una Comuna',
+        ])->syncRoles([$roleAdm, $roleSup]);
+        Permission::create([
+            'name' => 'comunas.destroy',
+            'description' => 'Eliminar una Comuna',
+        ])->syncRoles([$roleAdm, $roleSup]);
     }
 }

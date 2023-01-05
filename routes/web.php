@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComunaController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsuarioController;
@@ -33,5 +34,6 @@ Route::middleware([
         'logs' => LogController::class,
         'roles' => RoleController::class,
         'usuarios' => UsuarioController::class,
+        'comunas' => ComunaController::class,
     ]);
 });
