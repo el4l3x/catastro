@@ -98,6 +98,7 @@ class ComunaController extends Controller
             DB::beginTransaction();
 
             $comuna->nombre = $request->nombre;
+            $comuna->slug = Str::slug($request->nombre);
             $comuna->save();
             
             $log = new Log();
