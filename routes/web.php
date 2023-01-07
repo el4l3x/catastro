@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CiudadanoController;
 use App\Http\Controllers\ComunaController;
 use App\Http\Controllers\ConcejoController;
 use App\Http\Controllers\LogController;
@@ -39,5 +40,6 @@ Route::middleware([
         'comunas' => ComunaController::class,
         'concejos' => ConcejoController::class,
         'parroquias' => ParroquiaController::class,
+        'ciudadanos' => CiudadanoController::class,
     ]);
 });

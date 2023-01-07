@@ -22,4 +22,9 @@ class Parroquia extends Model
     {
         return "slug";
     }
+
+    public function ciudadanos()
+    {
+        return $this->hasMany(Ciudadano::class);
+    }
 }

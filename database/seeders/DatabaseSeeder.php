@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Ciudadano;
 use App\Models\Comuna;
 use App\Models\Concejo;
+use App\Models\Parroquia;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -29,5 +31,7 @@ class DatabaseSeeder extends Seeder
 
         Comuna::factory(50)->create();
         Concejo::factory(200)->create();
+        $this->call(ParroquiaSeeder::class);
+        Ciudadano::factory(5000)->create();
     }
 }

@@ -28,4 +28,9 @@ class Concejo extends Model
     {
         return $this->BelongsTo(Comuna::class);
     }
+
+    public function ciudadanos()
+    {
+        return $this->hasMany(Ciudadano::class);
+    }
 }
