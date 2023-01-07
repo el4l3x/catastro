@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Concejo;
 use App\Http\Requests\StoreConcejoRequest;
 use App\Http\Requests\UpdateConcejoRequest;
+use App\Models\Ciudadano;
 use App\Models\Comuna;
 use App\Models\Log;
 use Illuminate\Support\Facades\Auth;
@@ -76,6 +77,24 @@ class ConcejoController extends Controller
             DB::rollBack();
             throw $th;
         }
+    }
+
+    public function show(Concejo $concejo)
+    {
+        $poblacion = Ciudadano::where('concejo_id', $concejo->id)->count();
+        $aumentop = Ciudadano::where('concejo_id', $concejo->id)->whereDate('created_at', '>', date('Y-m-d', strtotime('now - 1 week')))->count();
+        $genero = Ciudadano::where('concejo_id', $concejo->id)->where('sexo', 'M')->count();
+        $edadm = Ciudadano::where('concejo_id', $concejo->id)->whereDate('nacimiento', '>', date('Y-m-d', strtotime('now - 18 year')))->count();
+        $abuelos = Ciudadano::where('concejo_id', $concejo->id)->whereDate('nacimiento', '<', date('Y-m-d', strtotime('now - 60 year')))->count();
+        
+        return view('Estructuras.Concejos.show', [
+            'concejo' => $concejo,
+            'poblacion' => $poblacion,
+            'aumentop' => $aumentop,
+            'genero' => $genero,
+            'edadm' => $edadm,
+            'abuelos' => $abuelos,
+        ]);
     }
 
     /**

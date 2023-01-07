@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Parroquia;
 use App\Http\Requests\StoreParroquiaRequest;
 use App\Http\Requests\UpdateParroquiaRequest;
+use App\Models\Ciudadano;
 use App\Models\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -81,7 +82,20 @@ class ParroquiaController extends Controller
      */
     public function show(Parroquia $parroquia)
     {
-        //
+        $poblacion = Ciudadano::where('parroquia_id', $parroquia->id)->count();
+        $aumentop = Ciudadano::where('parroquia_id', $parroquia->id)->whereDate('created_at', '>', date('Y-m-d', strtotime('now - 1 week')))->count();
+        $genero = Ciudadano::where('parroquia_id', $parroquia->id)->where('sexo', 'M')->count();
+        $edadm = Ciudadano::where('parroquia_id', $parroquia->id)->whereDate('nacimiento', '>', date('Y-m-d', strtotime('now - 18 year')))->count();
+        $abuelos = Ciudadano::where('parroquia_id', $parroquia->id)->whereDate('nacimiento', '<', date('Y-m-d', strtotime('now - 60 year')))->count();
+        
+        return view('Estructuras.Parroquias.show', [
+            'parroquia' => $parroquia,
+            'poblacion' => $poblacion,
+            'aumentop' => $aumentop,
+            'genero' => $genero,
+            'edadm' => $edadm,
+            'abuelos' => $abuelos,
+        ]);
     }
 
     /**
@@ -92,7 +106,7 @@ class ParroquiaController extends Controller
      */
     public function edit(Parroquia $parroquia)
     {
-        return view('EStructuras.Parroquias.edit', [
+        return view('Estructuras.Parroquias.edit', [
             'parroquia' => $parroquia,
         ]);
     }

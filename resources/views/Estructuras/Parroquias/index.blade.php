@@ -53,6 +53,12 @@
                                                 @method('delete')
                                             </form>
                                         @endcan
+
+                                        @can('parroquias.index')
+                                            <a href="{{ route('parroquias.show', $parroquia) }}" title="Ver Detalles" class="btn btn-sm btn-secondary mx-1 shadow">
+                                                <i class="fas fa-clipboard-list"></i>
+                                            </a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

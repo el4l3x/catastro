@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Comuna;
 use App\Http\Requests\StoreComunaRequest;
 use App\Http\Requests\UpdateComunaRequest;
+use App\Models\Ciudadano;
 use App\Models\Log;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -70,6 +72,34 @@ class ComunaController extends Controller
             DB::rollBack();
             throw $th;
         }
+    }
+
+    public function show(Comuna $comuna)
+    {
+        $poblacion = Ciudadano::whereHas('concejo.comuna', function (Builder $query) use ($comuna) {
+            $query->where('id', $comuna->id);
+        })->count();
+        $aumentop = Ciudadano::whereHas('concejo.comuna', function (Builder $query) use ($comuna) {
+            $query->where('id', $comuna->id);
+        })->whereDate('created_at', '>', date('Y-m-d', strtotime('now - 1 week')))->count();
+        $genero = Ciudadano::whereHas('concejo.comuna', function (Builder $query) use ($comuna) {
+            $query->where('id', $comuna->id);
+        })->where('sexo', 'M')->count();
+        $edadm = Ciudadano::whereHas('concejo.comuna', function (Builder $query) use ($comuna) {
+            $query->where('id', $comuna->id);
+        })->whereDate('nacimiento', '>', date('Y-m-d', strtotime('now - 18 year')))->count();
+        $abuelos = Ciudadano::whereHas('concejo.comuna', function (Builder $query) use ($comuna) {
+            $query->where('id', $comuna->id);
+        })->whereDate('nacimiento', '<', date('Y-m-d', strtotime('now - 60 year')))->count();
+        
+        return view('Estructuras.Comunas.show', [
+            'comuna' => $comuna,
+            'poblacion' => $poblacion,
+            'aumentop' => $aumentop,
+            'genero' => $genero,
+            'edadm' => $edadm,
+            'abuelos' => $abuelos,
+        ]);
     }
 
     /**
