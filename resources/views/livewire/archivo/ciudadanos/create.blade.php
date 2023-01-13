@@ -7,7 +7,7 @@
                 </x-slot>
                 <x-slot name="prependSlot">
                     <select name="nacionalidad" class="form-control">
-                        @if ($nacionalidad == 'e')
+                        @if (isset($nacionalidad) && $nacionalidad == 'e')
                             <option value="v">V</option>                    
                             <option value="e" selected>E</option>
                         @else                
@@ -33,7 +33,7 @@
                 </x-slot>
                 <x-slot name="prependSlot">
                     <select name="nacionalidad" class="form-control">
-                        @if ($nacionalidad == 'v')
+                        @if (isset($nacionalidad) && $nacionalidad == 'v')
                             <option value="v" selected>V</option>                    
                             <option value="e">E</option>
                         @else                
@@ -101,49 +101,51 @@
         <x-adminlte-input name="telefono" wire:model="telefono" label="Telefono" placeholder="" enable-old-support maxlength="7" fgroup-class="col-lg-6 col-md-6 col-sm-12">
             <x-slot name="prependSlot">
                 <x-adminlte-select name="codigo">
+                    @if (isset($codigo))
                     @switch($codigo)
-                        @case('0414')
-                            <option value="0414" selected>0414</option>
-                            <option value="0424">0424</option>
-                            <option value="0412">0412</option>
-                            <option value="0416">0416</option>
-                            <option value="0426">0426</option>
-                            @break
-                        @case('0424')
-                            <option value="0414">0414</option>
-                            <option value="0424" selected>0424</option>
-                            <option value="0412">0412</option>
-                            <option value="0416">0416</option>
-                            <option value="0426">0426</option>
-                            @break
-                        @case('0412')
-                            <option value="0414">0414</option>
-                            <option value="0424">0424</option>
-                            <option value="0412" selected>0412</option>
-                            <option value="0416">0416</option>
-                            <option value="0426">0426</option>
-                            @break
-                        @case('0416')
-                            <option value="0414">0414</option>
-                            <option value="0424">0424</option>
-                            <option value="0412">0412</option>
-                            <option value="0416" selected>0416</option>
-                            <option value="0426">0426</option>
-                            @break
-                        @case('0426')
-                            <option value="0414">0414</option>
-                            <option value="0424">0424</option>
-                            <option value="0412">0412</option>
-                            <option value="0416">0416</option>
-                            <option value="0426" selected>0426</option>
-                            @break
-                        @default
-                            <option value="0414">0414</option>
-                            <option value="0424">0424</option>
-                            <option value="0412">0412</option>
-                            <option value="0416">0416</option>
-                            <option value="0426">0426</option>
-                    @endswitch
+                    @case('0414')
+                        <option value="0414" selected>0414</option>
+                        <option value="0424">0424</option>
+                        <option value="0412">0412</option>
+                        <option value="0416">0416</option>
+                        <option value="0426">0426</option>
+                        @break
+                    @case('0424')
+                        <option value="0414">0414</option>
+                        <option value="0424" selected>0424</option>
+                        <option value="0412">0412</option>
+                        <option value="0416">0416</option>
+                        <option value="0426">0426</option>
+                        @break
+                    @case('0412')
+                        <option value="0414">0414</option>
+                        <option value="0424">0424</option>
+                        <option value="0412" selected>0412</option>
+                        <option value="0416">0416</option>
+                        <option value="0426">0426</option>
+                        @break
+                    @case('0416')
+                        <option value="0414">0414</option>
+                        <option value="0424">0424</option>
+                        <option value="0412">0412</option>
+                        <option value="0416" selected>0416</option>
+                        <option value="0426">0426</option>
+                        @break
+                    @case('0426')
+                        <option value="0414">0414</option>
+                        <option value="0424">0424</option>
+                        <option value="0412">0412</option>
+                        <option value="0416">0416</option>
+                        <option value="0426" selected>0426</option>
+                        @break                        
+                @endswitch
+                    @else
+                    <option value="0414">0414</option>
+                    <option value="0424">0424</option>
+                    <option value="0412">0412</option>
+                    <option value="0416">0416</option>
+                    <option value="0426">0426</option>
+                    @endif
                 </x-adminlte-select>
             </x-slot>
             <x-slot name="bottomSlot">

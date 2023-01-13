@@ -22,7 +22,9 @@ class Concejo extends Component
         $comuna = Comuna::with('concejos')->first();
         if ($this->comunaOld != null) {
             $this->concejos = ModelsConcejo::where('comuna_id', $this->comunaOld)->get();   
-        }        
+        } else {
+            $this->concejos = ModelsConcejo::where('comuna_id', $comuna->id)->get();
+        }
     }
 
     public function comunaChange()

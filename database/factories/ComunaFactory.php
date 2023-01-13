@@ -17,7 +17,7 @@ class ComunaFactory extends Factory
      */
     public function definition()
     {
-        $nombre = $this->faker->unique()->sentence(3);
+        $nombre = $this->faker->unique()->city();
 
         return [
             'nombre' => $nombre,

@@ -35,7 +35,7 @@
                                     </span>
                                     @else
                                     <span class="text-primary">
-                                        <i class="fas fa-arrow-up"></i> {{$aumentop}}<i class="fas fa-users"></i> - {{($aumentop*100)/($poblacion-$aumentop)}}%
+                                        <i class="fas fa-arrow-up"></i> {{$aumentop}}<i class="fas fa-users"></i> - {{number_format(($aumentop*100)/($poblacion-$aumentop), '2')}}%
                                     </span>
                                     @endif
                                     <span class="text-muted">En la ultima semana</span>
@@ -93,6 +93,28 @@
                         </div>
                     </div>
 
+                </div>
+                
+                <div class="col-md-6">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Distribucion de Población</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div id="container"></div>
+                        </div>
+                    </div>
+
                 </div>    
             </div>
 
@@ -108,7 +130,67 @@
 @stop
 
 @section('js')    
-    <script>        
-
+    <script src="/src/Highcharts/highcharts.js"></script>
+    <script>
+        var poblacion = {{ Js::from($poblacion) }};     
+        var aumentop = {{ Js::from($aumentop) }};     
+        var genero = {{ Js::from($genero) }};     
+        var edadm = {{ Js::from($edadm) }};     
+        var abuelos = {{ Js::from($abuelos) }};     
+        
+        var pm = (genero*100)/poblacion;
+        var pf = ((poblacion-genero)*100)/poblacion;
+        var pme = (edadm*100)/poblacion;
+        var pa = (abuelos*100)/poblacion;
+        Highcharts.chart('container', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'Masculino',
+                    y: pm,
+                    sliced: true,
+                }, {
+                    name: 'Femenino',
+                    y: pf,
+                    sliced: true,
+                }, {
+                    name: 'Menores de Edad',
+                    y: pme,
+                    sliced: true,
+                }, {
+                    name: '3ra Edad',
+                    y: pa,
+                    sliced: true,
+                }]
+            }]
+        });
     </script>
 @stop

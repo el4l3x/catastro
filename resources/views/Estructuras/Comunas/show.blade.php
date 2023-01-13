@@ -35,7 +35,7 @@
                                     </span>
                                     @else
                                     <span class="text-primary">
-                                        <i class="fas fa-arrow-up"></i> {{$aumentop}}<i class="fas fa-users"></i> - {{($aumentop*100)/($poblacion-$aumentop)}}%
+                                        <i class="fas fa-arrow-up"></i> {{$aumentop}}<i class="fas fa-users"></i> - {{number_format(($aumentop*100)/($poblacion-$aumentop), '2')}}%
                                     </span>
                                     @endif
                                     <span class="text-muted">En la ultima semana</span>

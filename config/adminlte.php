@@ -297,71 +297,72 @@ return [
         ],
         //Sidebar
         [
-            'header' => 'ARCHIVOS',
-        ],
-        [
-            'text'      => 'Ciudadanos',
-            'icon'      => 'fas fa-user',
+            'text'      => 'ARCHIVOS',
+            'icon'      => 'fas fa-archive',
             'submenu'   => [
                 [
                     'text'      => 'Ciudadanos',
                     'route'     => 'ciudadanos.index',
                     'active'    => ['ciudadanos*'],
                     'can'       => 'personas.index',
+                    'icon'      => 'fas fa-user',
                 ]
             ]
         ],
         [
-            'header' => 'ESTRUCTURAS',
-        ],
-        [
-            'text'      => 'Comunas',
-            'icon'      => 'fas fa-user-tie',
+            'text'      => 'ESTRUCTURAS',
+            'icon'      => 'fas fa-globe',         
             'submenu'   => [
                 [
                     'text'      => 'Comunas',
                     'route'     => 'comunas.index',
                     'active'    => ['comunas*'],
-                    'can'       => 'comunas.index'
+                    'can'       => 'comunas.index',
+                    'icon'      => 'fas fa-user-tie',
                 ],
                 [
                     'text'      => 'Concejos Comunales',
                     'route'     => 'concejos.index',
                     'active'    => ['concejos*'],
                     'can'       => 'concejos.index',
+                    'icon'      => 'fas fa-users',
                 ],
                 [
                     'text'      => 'Parroquias',
                     'route'     => 'parroquias.index',
                     'active'    => ['parroquias*'],
                     'can'       => 'parroquias.index',
+                    'icon'      => 'fas fa-passport',
                 ]
             ]
         ],
         [
-            'header'    => 'SEGURIDAD',
-        ],
-        [
-            'text'   => 'Bitacora',
-            'route'    => 'logs.index',
-            'icon' => 'fas fa-clipboard-list',
-            'active' => ['logs*'],
-            'can'    => 'logs.index',
-        ],
-        [
-            'text'   => 'Roles',
-            'route'    => 'roles.index',
-            'icon' => 'fas fa-fw fa-users-cog',
-            'active' => ['roles*'],
-            'can'    => 'roles.index',
-        ],
-        [
-            'text'   => 'Usuarios',
-            'route'    => 'usuarios.index',
-            'icon' => 'fas fa-fw fa-users',
-            'active' => ['usuarios*'],
-            'can'    => 'usuarios.index',
-        ],
+            'text'    => 'SEGURIDAD',
+            'icon'      => 'fas fa-key',
+            'submenu' => [
+                [
+                    'text'   => 'Bitacora',
+                    'route'    => 'logs.index',
+                    'icon' => 'fas fa-clipboard-list',
+                    'active' => ['logs*'],
+                    'can'    => 'logs.index',
+                ],
+                [
+                    'text'   => 'Roles',
+                    'route'    => 'roles.index',
+                    'icon' => 'fas fa-fw fa-users-cog',
+                    'active' => ['roles*'],
+                    'can'    => 'roles.index',
+                ],
+                [
+                    'text'   => 'Usuarios',
+                    'route'    => 'usuarios.index',
+                    'icon' => 'fas fa-fw fa-users',
+                    'active' => ['usuarios*'],
+                    'can'    => 'usuarios.index',
+                ],
+            ]
+        ],        
     ],
 
     /*
@@ -484,7 +485,7 @@ return [
                 ],
             ],
         ],
-        'Chartjs' => [
+        /* 'Chartjs' => [
             'active' => false,
             'files' => [
                 [
@@ -493,7 +494,7 @@ return [
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
                 ],
             ],
-        ],
+        ], */
         'Sweetalert2' => [
             'active' => false,
             'files' => [
