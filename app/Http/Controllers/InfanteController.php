@@ -159,6 +159,22 @@ class InfanteController extends Controller
      */
     public function destroy(Infante $infante)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $infante->delete();
+
+            $log = new Log();
+            $log->accion = "Eliminar infante ".$infante->nombre." ".$infante->apellido." (".$infante->id.")";
+            $log->user_id = Auth::user()->id;
+            $log->save();
+
+            DB::commit();
+
+            return redirect()->route('infantes.index');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
     }
 }
