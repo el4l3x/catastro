@@ -105,7 +105,12 @@ class InfanteController extends Controller
      */
     public function edit(Infante $infante)
     {
-        //
+        $ciudadanos = Ciudadano::get();
+
+        return view('Archivo.Infantes.edit', [
+            'infante' => $infante,
+            'ciudadanos' => $ciudadanos,
+        ]);
     }
 
     /**

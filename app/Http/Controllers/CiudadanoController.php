@@ -100,7 +100,9 @@ class CiudadanoController extends Controller
      */
     public function show(Ciudadano $ciudadano)
     {
-        //
+        return view('Archivo.Ciudadanos.show', [
+            'ciudadano' => $ciudadano,
+        ]);
     }
 
     /**

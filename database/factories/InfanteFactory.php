@@ -26,7 +26,7 @@ class InfanteFactory extends Factory
             'apellido' => $apellido,
             'slug' => Str::slug($nombre.' '.$apellido),
             'sexo' => $this->faker->randomElement(['M', 'F']),
-            'nacimiento' => $this->faker->dateTimeBetween('-90 years', '-9 years'),
+            'nacimiento' => $this->faker->dateTimeBetween('-15 years', 'now'),
             'ciudadano_id' => Ciudadano::all()->random()->id,
             'created_at' => $this->faker->dateTimeBetween('-1 years', 'now'),
         ];

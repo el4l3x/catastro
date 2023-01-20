@@ -23,17 +23,24 @@
                     <div class="card-body">
                         <div class="d-flex">
                             <p class="d-flex flex-column">
+                                <span class="text-bold text-lg">{{$infante->nombre}} {{$infante->apellido}}</span>
+                            </p>
+                            
+                        </div>
+
+                        <div class="d-flex">
+                            <p class="d-flex flex-column">
                                 <span class="text-bold text-lg">{{$infante->nacimiento}}</span>
                                 <span>Fecha de Nacimiento</span>
                             </p>
                             <p class="ml-auto d-flex flex-column text-right">
                                 @if ($infante->sexo == 'M')
-                                <span class="text-primary">
-                                    Masculino <i class="fas fa-users"></i>
+                                <span class="text-secondary">
+                                    Masculino <i class="fas fa-male"></i>
                                 </span>
                                 @else
                                 <span class="text-primary">
-                                    Femenino <i class="fas fa-users"></i>
+                                    Femenino <i class="fas fa-female"></i>
                                 </span>
                                 @endif
                             </p>
@@ -58,12 +65,12 @@
                             </p>
                             <p class="ml-auto d-flex flex-column text-right">
                                 @if ($infante->ciudadano->sexo == 'M')
-                                <span class="text-primary">
-                                    Masculino <i class="fas fa-users"></i>
+                                <span class="text-secondary">
+                                    Masculino <i class="fas fa-male"></i>
                                 </span>
                                 @else
-                                <span class="text-primary">
-                                    Femenino <i class="fas fa-users"></i>
+                                <span class="text-secondary">
+                                    Femenino <i class="fas fa-female"></i>
                                 </span>
                                 @endif
                             </p>
@@ -80,6 +87,14 @@
                             <p class="d-flex flex-column">
                                 <span class="text-bold text-lg">{{date('d-m-Y', strtotime($infante->ciudadano->nacimiento))}}</span>
                             </p>
+                        </div>
+
+                        <div class="d-flex">
+                            @can('personas.index')
+                                <a href="{{ route('ciudadanos.show', $infante->ciudadano) }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm btn-block">
+                                    Ver Ciudadano
+                                </a>
+                            @endcan
                         </div>
                         
                     </div>
