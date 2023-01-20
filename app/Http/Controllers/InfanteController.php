@@ -91,8 +91,10 @@ class InfanteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Infante $infante)
-    {
-        //
+    {        
+        return view('Archivo.Infantes.show', [
+            'infante' => $infante,
+        ]);
     }
 
     /**

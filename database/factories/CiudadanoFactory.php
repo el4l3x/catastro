@@ -31,7 +31,7 @@ class CiudadanoFactory extends Factory
             'sexo' => $this->faker->randomElement(['M', 'F']),
             'nacimiento' => $this->faker->dateTimeBetween('-90 years', '-9 years'),
             'codigo' => $this->faker->randomElement(['0416', '0426', '0414', '0424', '0412']),
-            'telefono' => $this->faker->phoneNumber(),
+            'telefono' => $this->faker->randomNumber(7, true),
             'direccion' => $this->faker->address(),
             'concejo_id' => Concejo::all()->random()->id,
             'parroquia_id' => Parroquia::all()->random()->id,

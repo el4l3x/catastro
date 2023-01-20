@@ -57,6 +57,12 @@
                                                 @method('delete')
                                             </form>
                                         @endcan
+
+                                        @can('personas.index')
+                                            <a href="{{ route('infantes.show', $infante) }}" target="blank" title="Ver Detalles" class="btn btn-sm btn-secondary mx-1 shadow">
+                                                <i class="fa fa-clipboard-list"></i>
+                                            </a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
