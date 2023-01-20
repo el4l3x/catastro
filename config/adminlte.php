@@ -306,6 +306,13 @@ return [
                     'active'    => ['ciudadanos*'],
                     'can'       => 'personas.index',
                     'icon'      => 'fas fa-user',
+                ],
+                [
+                    'text'      => 'Infantes',
+                    'route'     => 'infantes.index',
+                    'active'    => ['infantes*'],
+                    'can'       => 'personas.index',
+                    'icon'      => 'fas fa-child',
                 ]
             ]
         ],

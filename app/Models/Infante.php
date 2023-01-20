@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ciudadano extends Model
+class Infante extends Model
 {
     use HasFactory;
 
-    protected function nombres(): Attribute
+    protected function nombre(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => ucwords($value),
@@ -18,7 +18,7 @@ class Ciudadano extends Model
         );
     }
 
-    protected function apellidos(): Attribute
+    protected function apellido(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => ucwords($value),
@@ -28,21 +28,11 @@ class Ciudadano extends Model
 
     public function getRouteKeyName()
     {
-        return "slug";
+        return 'slug';
     }
 
-    public function concejo()
+    public function ciudadano()
     {
-        return $this->belongsTo(Concejo::class);
-    }
-
-    public function parroquia()
-    {
-        return $this->belongsTo(Parroquia::class);
-    }
-
-    public function infantes()
-    {
-        return $this->hasMany(Infante::class);
+        return $this->belongsTo(Ciudadano::class);
     }
 }
