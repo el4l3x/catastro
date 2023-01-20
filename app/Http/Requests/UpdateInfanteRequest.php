@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class UpdateInfanteRequest extends FormRequest
 {
@@ -13,7 +15,12 @@ class UpdateInfanteRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        if (Auth::check() && Auth::user()->hasPermissionTo('personas.edit')) {
+            return true;
+        } else {
+            return false;
+        }
+        
     }
 
     /**
@@ -24,7 +31,13 @@ class UpdateInfanteRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nombre' =>'required|string',
+            'apellido' => 'required|string',
+            'sexo' => [
+                Rule::in(['true', 'false']),
+            ],
+            'nacimiento' => 'required|date|before:now|after:now - 15 year',
+            'responsable' => 'required|exists:ciudadanos,id',
         ];
     }
 }

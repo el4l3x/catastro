@@ -122,7 +122,33 @@ class InfanteController extends Controller
      */
     public function update(UpdateInfanteRequest $request, Infante $infante)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $infante->nombre = $request->nombre;
+            $infante->apellido = $request->apellido;
+            $infante->slug = Str::slug($request->nombre." ".$request->apellido);
+            if ($request->sexo) {
+                $infante->sexo = 'M';
+            } else {
+                $infante->sexo = 'F';
+            }
+            $infante->nacimiento = date('Y-m-d', strtotime($request->nacimiento));
+            $infante->ciudadano_id = $request->responsable;
+            $infante->save();
+
+            $log = new Log();
+            $log->accion = "Editar infante ".$infante->nombre." ".$infante->apellido." (".$infante->id.")";
+            $log->user_id = Auth::user()->id;
+            $log->save();
+
+            DB::commit();
+
+            return redirect()->route('infantes.index');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
     }
 
     /**

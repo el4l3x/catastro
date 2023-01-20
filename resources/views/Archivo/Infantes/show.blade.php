@@ -26,13 +26,6 @@
                                 <span class="text-bold text-lg">{{$infante->nombre}} {{$infante->apellido}}</span>
                             </p>
                             
-                        </div>
-
-                        <div class="d-flex">
-                            <p class="d-flex flex-column">
-                                <span class="text-bold text-lg">{{$infante->nacimiento}}</span>
-                                <span>Fecha de Nacimiento</span>
-                            </p>
                             <p class="ml-auto d-flex flex-column text-right">
                                 @if ($infante->sexo == 'M')
                                 <span class="text-secondary">
@@ -42,6 +35,26 @@
                                 <span class="text-primary">
                                     Femenino <i class="fas fa-female"></i>
                                 </span>
+                                @endif
+                            </p>
+                        </div>
+
+                        <div class="d-flex">
+                            <p class="d-flex flex-column">
+                                <span class="text-bold text-lg">{{$infante->nacimiento}}</span>
+                                <span>Fecha de Nacimiento</span>
+                            </p>
+                            
+                            <p class="ml-auto d-flex flex-column text-right">
+                                @php
+                                    $fecha_nacimiento = new DateTime($infante->nacimiento);
+                                    $hoy = new DateTime();
+                                    $edadInfante = $hoy->diff($fecha_nacimiento);
+                                @endphp
+                                @if ($edadInfante->y < 1)
+                                {{$edadInfante->m}} Meses de edad
+                                @else
+                                {{$edadInfante->y}} Años de edad
                                 @endif
                             </p>
                         </div>                            
@@ -86,6 +99,14 @@
                         <div class="d-flex">
                             <p class="d-flex flex-column">
                                 <span class="text-bold text-lg">{{date('d-m-Y', strtotime($infante->ciudadano->nacimiento))}}</span>
+                            </p>
+
+                            <p class="ml-auto d-flex flex-column text-right">
+                                @php
+                                    $fecha_nacimiento = new DateTime($infante->ciudadano->nacimiento);
+                                    $edadCiudadano = $hoy->diff($fecha_nacimiento);
+                                @endphp
+                                {{$edadCiudadano->y}} Años de edad
                             </p>
                         </div>
 
