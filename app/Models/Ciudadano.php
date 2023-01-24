@@ -45,4 +45,9 @@ class Ciudadano extends Model
     {
         return $this->hasMany(Infante::class);
     }
+
+    public function jefe()
+    {
+        return $this->morphToMany(Jefe::class, 'jefeable');
+    }
 }

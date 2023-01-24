@@ -35,4 +35,9 @@ class Infante extends Model
     {
         return $this->belongsTo(Ciudadano::class);
     }
+
+    public function jefe()
+    {
+        return $this->morphToMany(Jefe::class, 'jefeable');
+    }
 }
