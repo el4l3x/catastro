@@ -125,12 +125,73 @@
                     </div>
                 </div>
 
+                <div class="card">
+                        
+                    <div class="card-header border-0">
+                        <div class="d-flex justify-content-between">
+                            <h2 class="card-title">Nucleo Familiar</h2>
+                        </div>
+                    </div>
+
+                    @if ($ciudadano->jefe_id != null)
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">{{$ciudadano->jefe->datos->nombres}} {{$ciudadano->jefe->datos->apellidos}}</span>
+                                    <span>{{$ciudadano->jefe->datos->nacionalidad}}-{{$ciudadano->jefe->datos->cedula}}</span>
+                                </p>
+                                <p class="ml-auto d-flex flex-column text-right">
+                                    Jefe de Familia
+                                </p>                            
+                            </div>
+
+                            <hr>
+                            
+                            @foreach ($ciudadano->jefe->familia as $mienbro)
+                                <div class="d-flex">
+                                    <p class="d-flex flex-column">
+                                        <span class="text-bold text-lg">{{$mienbro->nombres}} {{$mienbro->apellidos}}</span>
+                                        <span>{{$mienbro->nacionalidad}}-{{$mienbro->cedula}}</span>
+                                    </p>
+                                    <p class="ml-auto d-flex flex-column text-right">
+                                        Miembro de Familia
+                                    </p>                            
+                                </div>
+
+                                @if ($mienbro->infantes->count() > 0)
+                                    @foreach ($mienbro->infantes as $infante)
+                                        <div class="d-flex">
+                                            <p class="d-flex flex-column">
+                                                <span class="text-bold text-lg">{{$infante->nombre}} {{$infante->apellido}}</span>
+                                            </p>
+                                            <p class="ml-auto d-flex flex-column text-right">
+                                                Infante a cargo
+                                            </p>                            
+                                        </div>
+                                    @endforeach
+                                @endif
+
+                                <hr>
+                            @endforeach
+                        </div>
+                    @else
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">Nucleo familiar sin asignar</span>                                 
+                                </p>                 
+                            </div>
+                        </div>                        
+                    @endif
+                </div>
+
                 @foreach ($ciudadano->infantes as $infante)
                 <div class="card">
                         
                     <div class="card-header border-0">
                         <div class="d-flex justify-content-between">
                             <h2 class="card-title">{{$infante->nombre}} {{$infante->apellido}}</h2>
+                            <span>Infante a cargo</span>
                         </div>
                     </div>
 

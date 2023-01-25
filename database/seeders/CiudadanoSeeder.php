@@ -24,35 +24,30 @@ class CiudadanoSeeder extends Seeder
         Infante::factory(1750)->create();
 
         $familia = array();
-        $hijos = array();
 
         foreach ($ciudadanos as $ciudadano) {
             if ($faker->numberBetween(1, 10) < 3) {
                 $jefe = new Jefe();
-                $jefe->ciudadano_id = $ciudadano->id;
                 $jefe->save();
 
-                $jefe->ciudadanos()->attach($ciudadano->id, [
-                    'jefe_id' => $jefe->id,
-                ]);
+                $ciudadano->jefe_id = $jefe->id;
+                $ciudadano->save();
 
                 $familia[] = $jefe->id;                
 
                 for ($i=0; $i < $faker->numberBetween(1, 2); $i++) { 
                     $ciudadano = Ciudadano::all()->whereNotIn('id', $familia)->random()->id;
                     $familia[] = $ciudadano;
-                    $jefe->ciudadanos()->attach($ciudadano, [
+                    
+                    $persona = Ciudadano::find($ciudadano);
+                    $persona->jefe_id = $jefe->id;
+                    $persona->save();
+
+                    $jefe->familia()->attach($ciudadano, [
                         'jefe_id' => $jefe->id,
                     ]);
                 }
-                
-                for ($i=0; $i < $faker->numberBetween(1, 2); $i++) { 
-                    $infante = Infante::all()->whereNotIn('id', $hijos)->random()->id;
-                    $hijos[] = $infante;
-                    $jefe->infantes()->attach($infante, [
-                        'jefe_id' => $jefe->id,
-                    ]);
-                }
+
             }
             
         }

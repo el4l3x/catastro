@@ -35,6 +35,7 @@ class CiudadanoFactory extends Factory
             'direccion' => $this->faker->address(),
             'concejo_id' => Concejo::all()->random()->id,
             'parroquia_id' => Parroquia::all()->random()->id,
+            'jefe_id' => null,
             'created_at' => $this->faker->dateTimeBetween('-1 years', 'now'),
         ];
     }

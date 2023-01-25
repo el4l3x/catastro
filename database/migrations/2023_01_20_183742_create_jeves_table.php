@@ -15,9 +15,6 @@ return new class extends Migration
     {
         Schema::create('jefes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('ciudadano_id');
-
-            $table->foreign('ciudadano_id')->references('id')->on('ciudadanos')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

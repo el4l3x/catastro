@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ciudadano;
 use App\Http\Requests\StoreCiudadanoRequest;
 use App\Http\Requests\UpdateCiudadanoRequest;
+use App\Models\Jefe;
 use App\Models\Log;
 use App\Models\Parroquia;
 use Illuminate\Support\Facades\Auth;
@@ -100,8 +101,11 @@ class CiudadanoController extends Controller
      */
     public function show(Ciudadano $ciudadano)
     {
+        $jefe = Jefe::find($ciudadano->jefe_id);
+
         return view('Archivo.Ciudadanos.show', [
             'ciudadano' => $ciudadano,
+            'jefe' => $jefe,
         ]);
     }
 

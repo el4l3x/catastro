@@ -11,13 +11,13 @@ class Jefe extends Model
 
     use HasFactory;
 
-    public function ciudadanos()
+    public function familia()
     {
-        return $this->morphedByMany(Ciudadano::class, 'jefeable');
+        return $this->belongsToMany(Ciudadano::class);
     }
 
-    public function infantes()
+    public function datos()
     {
-        return $this->morphedByMany(Infante::class, 'jefeable');
+        return $this->hasOne(Ciudadano::class);
     }
 }

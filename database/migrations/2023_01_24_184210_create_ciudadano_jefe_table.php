@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jefeables', function (Blueprint $table) {
+        Schema::create('ciudadano_jefe', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('ciudadano_id');
             $table->unsignedBigInteger('jefe_id');
-            $table->unsignedBigInteger('jefeable_id');
-            $table->string('jefeable_type');
-            
+
+            $table->foreign('ciudadano_id')->references('id')->on('ciudadanos')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('jefe_id')->references('id')->on('jefes')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jefeables');
+        Schema::dropIfExists('ciudadano_jefe');
     }
 };

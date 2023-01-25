@@ -46,6 +46,12 @@
                                     <td>{{ $ciudadano->concejo->comuna->nombre }}</td>
                                     <td>{{ $ciudadano->parroquia->nombre }}</td>
                                     <td>
+                                        @can('personas.index')
+                                            <a href="{{ route('ciudadanos.show', $ciudadano) }}" target="blank" title="Ver Detalles" class="btn btn-sm btn-secondary mx-1 shadow">
+                                                <i class="fa fa-clipboard-list"></i>
+                                            </a>
+                                        @endcan
+                                        
                                         @can('personas.edit')
                                             <a href="{{ route('ciudadanos.edit', $ciudadano) }}" title="Editar" class="btn btn-sm btn-secondary mx-1 shadow">
                                                 <i class="fa fa-fw fa-edit"></i>

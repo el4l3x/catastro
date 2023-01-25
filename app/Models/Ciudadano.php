@@ -46,8 +46,13 @@ class Ciudadano extends Model
         return $this->hasMany(Infante::class);
     }
 
+    public function familia()
+    {
+        return $this->belongsToMany(Jefe::class);
+    }
+
     public function jefe()
     {
-        return $this->morphToMany(Jefe::class, 'jefeable');
+        return $this->belongsTo(Jefe::class);
     }
 }
