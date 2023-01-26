@@ -41,10 +41,12 @@ class CiudadanoController extends Controller
      */
     public function create()
     {
-        $parroquias = Parroquia::get();        
+        $parroquias = Parroquia::get();
+        $jefes = Jefe::get();    
 
         return view('Archivo.Ciudadanos.create', [
             'parroquias' => $parroquias,
+            'jefes' => $jefes,
         ]);
     }
 
@@ -101,8 +103,7 @@ class CiudadanoController extends Controller
      */
     public function show(Ciudadano $ciudadano)
     {
-        $jefe = Jefe::find($ciudadano->jefe_id);
-
+        $jefe = Jefe::find($ciudadano->familia[0]->pivot->jefe_id);
         return view('Archivo.Ciudadanos.show', [
             'ciudadano' => $ciudadano,
             'jefe' => $jefe,

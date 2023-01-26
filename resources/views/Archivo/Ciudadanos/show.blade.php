@@ -133,28 +133,21 @@
                         </div>
                     </div>
 
-                    @if ($ciudadano->jefe_id != null)
+                    @if ($ciudadano->familia->count() > 0)
                         <div class="card-body">
-                            <div class="d-flex">
-                                <p class="d-flex flex-column">
-                                    <span class="text-bold text-lg">{{$ciudadano->jefe->datos->nombres}} {{$ciudadano->jefe->datos->apellidos}}</span>
-                                    <span>{{$ciudadano->jefe->datos->nacionalidad}}-{{$ciudadano->jefe->datos->cedula}}</span>
-                                </p>
-                                <p class="ml-auto d-flex flex-column text-right">
-                                    Jefe de Familia
-                                </p>                            
-                            </div>
-
-                            <hr>
                             
-                            @foreach ($ciudadano->jefe->familia as $mienbro)
+                            @foreach ($jefe->familia as $mienbro)
                                 <div class="d-flex">
                                     <p class="d-flex flex-column">
                                         <span class="text-bold text-lg">{{$mienbro->nombres}} {{$mienbro->apellidos}}</span>
                                         <span>{{$mienbro->nacionalidad}}-{{$mienbro->cedula}}</span>
                                     </p>
                                     <p class="ml-auto d-flex flex-column text-right">
-                                        Miembro de Familia
+                                        @if ($mienbro->pivot->ciudadano_id == $jefe->ciudadano_id)
+                                            Jefe de Familia
+                                        @else
+                                            Miembro de Familia
+                                        @endif
                                     </p>                            
                                 </div>
 

@@ -27,11 +27,9 @@ return new class extends Migration
             $table->text('direccion');
             $table->unsignedBigInteger('concejo_id');
             $table->unsignedBigInteger('parroquia_id');
-            $table->unsignedBigInteger('jefe_id')->nullable();
 
             $table->foreign('concejo_id')->references('id')->on('concejos')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('parroquia_id')->references('id')->on('parroquias')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('jefe_id')->references('id')->on('jefes')->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });
     }

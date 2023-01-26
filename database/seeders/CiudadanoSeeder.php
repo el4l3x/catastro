@@ -26,26 +26,20 @@ class CiudadanoSeeder extends Seeder
         $familia = array();
 
         foreach ($ciudadanos as $ciudadano) {
-            if ($faker->numberBetween(1, 10) < 3) {
+            if ($ciudadano->jefe == null && $faker->numberBetween(1, 10) < 3) {
                 $jefe = new Jefe();
+                $jefe->ciudadano_id = $ciudadano->id;
                 $jefe->save();
 
-                $ciudadano->jefe_id = $jefe->id;
-                $ciudadano->save();
+                $jefe->familia()->attach($ciudadano);
 
-                $familia[] = $jefe->id;                
+                $familia[] = $ciudadano->id;                
 
                 for ($i=0; $i < $faker->numberBetween(1, 2); $i++) { 
-                    $ciudadano = Ciudadano::all()->whereNotIn('id', $familia)->random()->id;
-                    $familia[] = $ciudadano;
-                    
-                    $persona = Ciudadano::find($ciudadano);
-                    $persona->jefe_id = $jefe->id;
-                    $persona->save();
+                    $miembros = Ciudadano::all()->whereNotIn('id', $familia)->random()->id;
+                    $familia[] = $miembros;
 
-                    $jefe->familia()->attach($ciudadano, [
-                        'jefe_id' => $jefe->id,
-                    ]);
+                    $jefe->familia()->attach($miembros);
                 }
 
             }
