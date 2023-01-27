@@ -103,7 +103,11 @@ class CiudadanoController extends Controller
      */
     public function show(Ciudadano $ciudadano)
     {
-        $jefe = Jefe::find($ciudadano->familia[0]->pivot->jefe_id);
+        if ($ciudadano->familia->count() > 0) {
+            $jefe = Jefe::find($ciudadano->familia[0]->pivot->jefe_id);
+        } else {
+            $jefe = NULL;
+        }        
         return view('Archivo.Ciudadanos.show', [
             'ciudadano' => $ciudadano,
             'jefe' => $jefe,
