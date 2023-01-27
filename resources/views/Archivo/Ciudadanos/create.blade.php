@@ -30,7 +30,16 @@
 
                         @livewire('archivo.ciudadanos.create')
 
-                        @livewire('archivo.ciudadanos.jefe')
+                        <div class="row">
+                            <x-adminlte-input-switch name="sexo" label="Sexo" enable-old-support fgroup-class="col-lg-2 col-md-4 col-sm-6" data-on-text="M" data-off-text="F" data-on-color="teal" data-off-color="pink" checked/>
+    
+                            @php
+                            $config = ['format' => 'DD-MM-YYYY'];
+                            @endphp
+                            <x-adminlte-input-date name="nacimiento" label="Fecha de Nacimiento" enable-old-support fgroup-class="col-lg-2 col-md-4 col-sm-6" :config="$config"/>
+                        </div>
+
+                        {{-- @livewire('archivo.ciudadanos.jefe') --}}
 
                         <h5>Ubicacion</h5>
                         <hr>

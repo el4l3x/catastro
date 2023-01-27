@@ -53,6 +53,6 @@ class Ciudadano extends Model
 
     public function jefe()
     {
-        return $this->hasOne(Jefe::class);
+        return $this->hasOne(Jefe::class, 'ciudadano_id', 'id');
     }
 }

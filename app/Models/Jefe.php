@@ -18,6 +18,6 @@ class Jefe extends Model
 
     public function datos()
     {
-        return $this->belongsTo(Ciudadano::class);
+        return $this->belongsTo(Ciudadano::class, 'ciudadano_id', 'id');
     }
 }
