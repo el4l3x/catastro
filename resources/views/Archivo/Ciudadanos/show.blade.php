@@ -132,6 +132,7 @@
                             <h2 class="card-title">Nucleo Familiar</h2>
                         </div>
                     </div>
+                    
 
                     @if ($ciudadano->familia->count() > 0)
                         <div class="card-body">

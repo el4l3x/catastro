@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comuna;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,6 @@ class ComunaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Comuna::factory(50)->create();
     }
 }

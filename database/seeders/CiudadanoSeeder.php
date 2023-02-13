@@ -7,7 +7,7 @@ use App\Models\Infante;
 use App\Models\Jefe;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Faker;
+
 
 class CiudadanoSeeder extends Seeder
 {
@@ -18,32 +18,22 @@ class CiudadanoSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
-
-        $ciudadanos = Ciudadano::factory(5000)->create();
-        Infante::factory(1750)->create();
-
-        $familia = array();
+        
+        $ciudadanos = Ciudadano::factory(150000)->create();
 
         foreach ($ciudadanos as $ciudadano) {
-            if ($ciudadano->jefe == null && $faker->numberBetween(1, 10) < 3) {
+            if (Jefe::all()->count() === 0 || $ciudadano->jefe == null && rand(1, 10) < 3) {
                 $jefe = new Jefe();
                 $jefe->ciudadano_id = $ciudadano->id;
                 $jefe->save();
 
                 $jefe->familia()->attach($ciudadano);
 
-                $familia[] = $ciudadano->id;                
-
-                for ($i=0; $i < $faker->numberBetween(1, 2); $i++) { 
-                    $miembros = Ciudadano::all()->whereNotIn('id', $familia)->random()->id;
-                    $familia[] = $miembros;
-
-                    $jefe->familia()->attach($miembros);
-                }
-
+            } else {
+                $ciudadano->familia()->attach(Jefe::all()->random()->id);
             }
             
         }
+
     }
 }

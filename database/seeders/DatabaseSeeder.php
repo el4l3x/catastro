@@ -30,11 +30,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
-
-        Comuna::factory(50)->create();
-        Concejo::factory(200)->create();
+        $this->call(ComunaSeeder::class);
+        $this->call(ConcejoSeeder::class);
         $this->call(ParroquiaSeeder::class);
         $this->call(CiudadanoSeeder::class);
+        $this->call(InfanteSeeder::class);
         
     }
 }
