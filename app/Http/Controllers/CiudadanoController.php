@@ -2,20 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CiudadanosExport;
 use App\Models\Ciudadano;
 use App\Http\Requests\StoreCiudadanoRequest;
 use App\Http\Requests\UpdateCiudadanoRequest;
+use App\Models\Infante;
 use App\Models\Jefe;
 use App\Models\Log;
 use App\Models\Parroquia;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
+use OpenSpout\Common\Entity\Style\Style;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class CiudadanoController extends Controller
 {
     public function __construct() {
-        $this->middleware('can:personas.index')->only('index');
+        $this->middleware('can:personas.index')->only('index', 'show', 'excel');
         $this->middleware('can:personas.create')->only('create', 'store');
         $this->middleware('can:personas.edit')->only('edit', 'update');
         $this->middleware('can:personas.destroy')->only('destroy');
@@ -27,11 +33,7 @@ class CiudadanoController extends Controller
      */
     public function index()
     {
-        $ciudadanos = Ciudadano::with('concejo.comuna', 'parroquia')->take(5000)->get();
-
-        return view('Archivo.Ciudadanos.index', [
-            'ciudadanos' => $ciudadanos,
-        ]);
+        return view('Archivo.Ciudadanos.index');
     }
 
     /**
@@ -199,5 +201,27 @@ class CiudadanoController extends Controller
             DB::rollBack();
             throw $th;
         }
+    }
+
+    public function export(Request $request)
+    {
+        foreach (Auth::user()->unreadNotifications as $key => $value) {
+            if ($value->id == $request->notification) {
+                $value->markAsRead();
+            }
+        }
+
+        return response()->download(public_path('storage/ciudadanos.xlsx'));
+    }
+    
+    public function csv(Request $request)
+    {
+        foreach (Auth::user()->unreadNotifications as $key => $value) {
+            if ($value->id == $request->notification) {
+                $value->markAsRead();
+            }
+        }
+
+        return response()->download(public_path('storage/ciudadanos.csv'));
     }
 }

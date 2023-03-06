@@ -15,6 +15,6 @@ class InfanteSeeder extends Seeder
      */
     public function run()
     {
-        Infante::factory(500)->create();
+        Infante::factory(37500)->create();
     }
 }
