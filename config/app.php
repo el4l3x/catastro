@@ -200,9 +200,6 @@ return [
         /* Laravel Permission */
         Spatie\Permission\PermissionServiceProvider::class,
 
-        /* Laravel Excel */
-        Maatwebsite\Excel\ExcelServiceProvider::class,
-
     ],
 
     /*
@@ -218,8 +215,6 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
-        /* Laravel Excel */
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 
 ];
