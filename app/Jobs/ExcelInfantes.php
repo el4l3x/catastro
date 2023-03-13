@@ -91,7 +91,7 @@ class ExcelInfantes implements ShouldQueue
      */
     public function handle()
     {
-        $filename = 'storage/app/public/infantes.xlsx';     
+        $filename = '../storage/app/public/infantes.xlsx';     
 
         (new FastExcel($this->infantesGenerator()))->export($filename, function ($ciudadano)
         {

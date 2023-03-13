@@ -115,7 +115,7 @@ class CsvCiudadanos implements ShouldQueue
      */
     public function handle()
     {
-        $filename = 'storage/app/public/ciudadanos.csv';
+        $filename = '../storage/app/public/ciudadanos.csv';
 
         /* $infantes = Infante::all();
 

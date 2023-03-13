@@ -93,7 +93,7 @@ class CsvInfantes implements ShouldQueue
     public function handle()
     {
         try {
-            $filename = 'storage/app/public/infantes.csv';      
+            $filename = '../storage/app/public/infantes.csv';      
 
             (new FastExcel($this->infantesGenerator()))->export($filename, function ($ciudadano)
             {

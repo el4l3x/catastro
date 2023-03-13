@@ -108,8 +108,7 @@ class ExcelCiudadanos implements ShouldQueue
 
     public function handle()
     {
-        /* $filename = 'storage/app/public/ciudadanos.xlsx'; */
-        $filename = 'ciudadanos.xlsx';
+        $filename = '../storage/app/public/ciudadanos.xlsx';
 
         /* $infantes = Infante::all();
 
