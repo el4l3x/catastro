@@ -211,7 +211,7 @@ class CiudadanoController extends Controller
             }
         }
 
-        return response()->download(public_path('../storage/ciudadanos.xlsx'));
+        return response()->download(public_path('storage/ciudadanos.xlsx'));
     }
     
     public function csv(Request $request)
