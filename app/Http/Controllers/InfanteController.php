@@ -7,6 +7,7 @@ use App\Http\Requests\StoreInfanteRequest;
 use App\Http\Requests\UpdateInfanteRequest;
 use App\Models\Ciudadano;
 use App\Models\Log;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -26,10 +27,7 @@ class InfanteController extends Controller
      */
     public function index()
     {
-        $infantes = Infante::with('ciudadano')->get();
-        return view('Archivo.Infantes.index', [
-            'infantes' => $infantes,
-        ]);
+        return view('Archivo.Infantes.index');
     }
 
     /**
@@ -176,5 +174,27 @@ class InfanteController extends Controller
             DB::rollBack();
             throw $th;
         }
+    }
+
+    public function excel(Request $request)
+    {
+        foreach (Auth::user()->unreadNotifications as $key => $value) {
+            if ($value->id == $request->notification) {
+                $value->markAsRead();
+            }
+        }
+
+        return response()->download(public_path('storage/infantes.xlsx'));
+    }
+    
+    public function csv(Request $request)
+    {
+        foreach (Auth::user()->unreadNotifications as $key => $value) {
+            if ($value->id == $request->notification) {
+                $value->markAsRead();
+            }
+        }
+
+        return response()->download(public_path('storage/infantes.csv'));
     }
 }

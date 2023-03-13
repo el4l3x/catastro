@@ -12,6 +12,7 @@ use App\Models\Infante;
 use App\Models\Jefe;
 use App\Models\Parroquia;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log as FacadesLog;
 
 class LogController extends Controller
 {
@@ -208,23 +209,37 @@ class LogController extends Controller
 
         
         foreach (Auth::user()->unreadNotifications as $notification) {
-            foreach ($notification->data as $data) {
-                switch ($data) {
-                    case 'Excel':
-                        $ruta = route('ciudadanos.excel', [
-                            'notification' => $notification->id
-                        ]);
-                        $dropdownHtml .= "<a href='".$ruta."' class='dropdown-item'>Exportacion de ciudadanos en Excel.<span class='float-right text-muted text-sm'>Haz clic para descargar</span></a>";                        
-                        break;
-                        
-                    case 'CSV':
+
+            switch ($notification->data['data']) {
+                case 'Ciudadanos':
+                    if ($notification->data['type'] == 'CSV') {
                         $ruta = route('ciudadanos.csv', [
                             'notification' => $notification->id
                         ]);
                         $dropdownHtml .= "<a href='".$ruta."' class='dropdown-item'>Exportacion de ciudadanos en CSV.<span class='float-right text-muted text-sm'>Haz clic para descargar</span></a>";                        
-                        break;
-                }                
-            }            
+                    } else {
+                        $ruta = route('ciudadanos.excel', [
+                            'notification' => $notification->id
+                        ]);
+                        $dropdownHtml .= "<a href='".$ruta."' class='dropdown-item'>Exportacion de ciudadanos en Excel.<span class='float-right text-muted text-sm'>Haz clic para descargar</span></a>";
+                    }                    
+                    break;
+                    
+                case 'Infantes':
+                    if ($notification->data['type'] == 'CSV') {
+                        $ruta = route('infantes.csv', [
+                            'notification' => $notification->id
+                        ]);
+                        $dropdownHtml .= "<a href='".$ruta."' class='dropdown-item'>Exportacion de infantes en CSV.<span class='float-right text-muted text-sm'>Haz clic para descargar</span></a>";                        
+                    } else {
+                        $ruta = route('infantes.excel', [
+                            'notification' => $notification->id
+                        ]);
+                        $dropdownHtml .= "<a href='".$ruta."' class='dropdown-item'>Exportacion de infantes en Excel.<span class='float-right text-muted text-sm'>Haz clic para descargar</span></a>";
+                    }
+                    break;
+            }
+
         }
         /* $notifications = [
             [

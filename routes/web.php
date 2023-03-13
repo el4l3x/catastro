@@ -46,5 +46,8 @@ Route::middleware([
 
     Route::get('ciudadano/excel', [CiudadanoController::class, 'export'])->name('ciudadanos.excel');
     Route::get('ciudadano/csv', [CiudadanoController::class, 'csv'])->name('ciudadanos.csv');
+    
+    Route::get('infante/excel', [InfanteController::class, 'excel'])->name('infantes.excel');
+    Route::get('infante/csv', [InfanteController::class, 'csv'])->name('infantes.csv');
 
 });

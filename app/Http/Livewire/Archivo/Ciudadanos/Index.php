@@ -74,6 +74,11 @@ class Index extends Component
     {
         return Storage::download('ciudadanos.xlsx');
     }
+    
+    public function downloadExportCSV()
+    {
+        return Storage::download('ciudadanos.csv');
+    }
 
     public function updateExportProgress()
     {

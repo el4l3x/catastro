@@ -10,7 +10,10 @@
 @stop
 
 @section('content')
-    <div class="card">
+
+    @livewire('archivo.infantes.index')
+
+    {{-- <div class="card">
         
         <div class="card-body">
             
@@ -73,119 +76,14 @@
             </div>
 
         </div>
-    </div>
+    </div> --}}
 
 @stop
 
 @section('css')
-    <link rel="stylesheet" type="text/css" href="/src/datatables.min.css"/>
 
-    <style>
-        .dt-button.active {
-            background: #007BFF !important;
-        }
-        .dt-button.dropdown-item {
-            color: white !important;
-        }
-        .dt-button-collection {
-            background: gray !important;
-        }
-        .dt-button.active {
-            background: #007BFF !important;
-        }
-        div.dt-button-info {
-           background: #007BFF;
-        }
-        .gray-text {
-            color: #007BFF !important;
-            text-decoration: none !important;
-        }
-        .btn-gray {
-            background: #007BFF;
-            color: white;
-        }
-    </style>
 @stop
 
 @section('js')
-    <script type="text/javascript" src="/src/datatables.min.js"></script>
     
-    <script>        
-        $(function () {
-
-            var table = $("#infantes-table").DataTable({
-                "language": {
-                    "search": "Buscar:",
-                    "emptyTable": "No hay registros",
-                    "info":           "Viendo del _START_ al _END_. En total _TOTAL_ registros",
-                    "infoEmpty":      "",
-                    "infoFiltered":   "(filtrado de _MAX_ registros)",
-                    "infoPostFix":    "",
-                    "thousands":      ".",
-                    "lengthMenu":     "Ver _MENU_ filas",
-                    "loadingRecords": "Cargando...",
-                    "processing":     "",
-                    "zeroRecords":    "No se consiguieron coincidencias",
-                    "paginate": {
-                        "first":      "Primero",
-                        "last":       "Ultimo",
-                        "next":       "Siguiente",
-                        "previous":   "Anterior"
-                    },
-                    "aria": {
-                        "sortAscending":  ": ordenar de manera ascendente",
-                        "sortDescending": ": ordenar de manera descendente"
-                    },
-                    "buttons": {
-                        copy: 'Copy',
-                        copySuccess: {
-                            1: "Copiado al portapapeles",
-                            _: "Copiado al portapapeles"
-                        },
-                        copyTitle: '',
-                        copyKeys: 'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>To cancel, click this message or press escape.'
-                    },
-                },
-                /* scrollX: true, */
-                "responsive": true, 
-                "autoWidth": false,
-                "buttons": [
-                    {
-                        extend: 'copy',
-                        text: 'Copiar',
-                        exportOptions: {
-                            columns: [0, 1],
-                        },
-                    },
-                    {
-                        extend: 'excel',
-                        text: 'Excel',
-                        exportOptions: {
-                            columns: [0, 1],
-                        },
-                    },
-                    {
-                        extend: 'pdf',
-                        text: 'PDF',
-                        exportOptions: {
-                            columns: [0, 1],
-                        },
-                    },
-                    {
-                        extend: 'print',
-                        text: 'Imprimir',
-                        exportOptions: {
-                            columns: [0, 1],
-                        },
-                    },
-                    {
-                        extend: 'colvis',
-                        text: 'Ocultar Columnas',
-                        className: ''
-                    },
-                ]
-            }).buttons().container().appendTo('#buttons-exp');
-          
-        });
-    </script>
 @stop
