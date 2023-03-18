@@ -5,9 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Jefe;
 use App\Http\Requests\StoreJefeRequest;
 use App\Http\Requests\UpdateJefeRequest;
+use Illuminate\Http\Request;
 
 class JefeController extends Controller
 {
+    public function select(Request $request)
+    {
+        $input = $request->all();
+       
+        $jefes = Jefe::withWhereHas('datos', function ($query) use ($input)
+                {
+                    $query->where('nombres', 'Like', '%' . $input['term']['term'] . '%')
+                        ->orWhere('apellidos', 'Like', '%' . $input['term']['term'] . '%')
+                        ->orWhere('cedula', 'Like', '%' . $input['term']['term'] . '%');
+                })
+                ->limit(30)
+                ->get()->toArray();
+
+        return response()->json($jefes);
+    }
+
     /**
      * Display a listing of the resource.
      *

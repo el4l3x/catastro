@@ -172,7 +172,11 @@
                         <div class="card-body">
                             <div class="d-flex">
                                 <p class="d-flex flex-column">
-                                    <span class="text-bold text-lg">Nucleo familiar sin asignar</span>                                 
+                                    <span class="text-bold text-lg">Nucleo familiar sin asignar</span>
+                                
+                                    <a href="{{ route('ciudadanos.edit', $ciudadano) }}" title="Editar" class="btn btn-sm btn-secondary mx-1 shadow">
+                                        Cambiar
+                                    </a>
                                 </p>                 
                             </div>
                         </div>                        

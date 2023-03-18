@@ -136,7 +136,7 @@
         var aumentop = {{ Js::from($aumentop) }};     
         var genero = {{ Js::from($genero) }};     
         var edadm = {{ Js::from($edadm) }};     
-        var abuelos = {{ Js::from($abuelos) }};     
+        var abuelos = {{ Js::from($abuelos) }};
         
         var pm = (genero*100)/poblacion;
         var pf = ((poblacion-genero)*100)/poblacion;

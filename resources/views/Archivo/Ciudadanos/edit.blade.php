@@ -38,17 +38,63 @@
                             @php
                             $config = ['format' => 'DD-MM-YYYY'];
                             @endphp
-                            <x-adminlte-input-date value="{{ date('d-m-Y', strtotime($ciudadano->nacimiento)) }}" name="nacimiento" label="Fecha de Nacimiento" enable-old-support fgroup-class="col-lg-2 col-md-4 col-sm-6" :config="$config"/>
-                            
-                        {{-- </div>
-                    
-                        <div class="form-group"> --}}
+                            <x-adminlte-input-date value="{{ date('d-m-Y', strtotime($ciudadano->nacimiento)) }}" name="nacimiento" label="Fecha de Nacimiento" enable-old-support fgroup-class="col-lg-2 col-md-2 col-sm-6" :config="$config"/>
                             
                             @if ($ciudadano->sexo == 'M')
                             <x-adminlte-input-switch name="sexo" label="Sexo" enable-old-support fgroup-class="col-lg-2 col-md-4 col-sm-6" data-on-text="M" data-off-text="F" data-on-color="teal" data-off-color="pink" checked/>
                             @else
                             <x-adminlte-input-switch name="sexo" label="Sexo" enable-old-support fgroup-class="col-lg-2 col-md-4 col-sm-6" data-on-text="M" data-off-text="F" data-on-color="teal" data-off-color="pink"/>
                             @endif
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="Jefe de familia">Es Jefe de Familia?</label>
+                        
+                                    <div class="input-group">
+                                        <div class="form-check">
+                                            @if ($jefe != NULL)
+                                                @if ($ciudadano->id === $jefe->ciudadano_id)
+                                                <input type="checkbox" name="jefe" id="jefe" class="form-check-input" checked>
+                                                @else
+                                                <input type="checkbox" name="jefe" id="jefe" class="form-check-input">
+                                                @endif
+                                            @else
+                                                <input type="checkbox" name="jefe" id="jefe" class="form-check-input">
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5" id="colJefe">
+                                <label class="" for="Jefe de familia">Seleccione su Jefe de Familia</label>
+                            
+                                <div class="input-group">
+                    
+                                    <select name="jfamilia" id="jfamilia" class="form-control">
+                                        @if ($jefe != NULL)
+                                        <option value="{{$jefe->id}}" selected="selected">{{$jefe->datos->nacionalidad}}-{{$jefe->datos->cedula}} {{$jefe->datos->nombres}}, {{$jefe->datos->apellidos}}</option>
+                                        @endif
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-5 d-none" id="colFamilia">
+                                <label class="" for="Jefe de familia">Seleccione su Familia</label>
+                            
+                                <div class="input-group">
+                    
+                                    <select name="familia[]" id="familia" class="form-control" multiple>
+                                        @if ($ciudadano->familia->count() > 0)
+                                            @foreach ($jefe->familia as $miembro)
+                                                @if ($ciudadano->id != $miembro->id)                                                    
+                                                    <option value="{{$miembro->id}}" selected="selected">{{$miembro->nacionalidad}}-{{$miembro->cedula}} {{$miembro->nombres}}, {{$miembro->apellidos}}</option>
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                            </div>
                     
                         </div>
 
@@ -119,6 +165,99 @@
 
 @section('js')    
     <script>        
+        $(document).ready(function() {            
+            if ($("#jefe").prop('checked')) {
+                $("#jfamilia").val(1)
+                $("#colJefe").addClass("d-none")
+                $("#colFamilia").removeClass("d-none")
+            } else {
+                $("#colFamilia").addClass("d-none")
+                $("#colJefe").removeClass("d-none")
+            }
 
+            $("#jefe").change(function () {
+                if ($("#jefe").prop('checked')) {
+                    $("#colJefe").addClass("d-none")
+                    $("#colFamilia").removeClass("d-none")
+                } else {
+                    $("#colFamilia").addClass("d-none")
+                    $("#colJefe").removeClass("d-none")
+                }
+            })
+
+            $("#jfamilia").select2({
+                placeholder: "Selecciona un Jefe de Familia",
+                allowClear: true,
+                language: {
+                    searching: function () {
+                        return "Buscando...";
+                    },
+
+                    errorLoading: function () {
+                        return "No se consiguieron coincidencias...";
+                    }
+                },
+                ajax: {
+                    url: "{{ route('select.jefes') }}",
+                    dataType: 'json',
+                    type: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    data: function(term) {
+                        return {
+                            term: term,
+                        };
+                    },
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(item) {
+                                return {                                        
+                                    text: item.datos.nacionalidad + '-' + item.datos.cedula + ' ' + item.datos.nombres + ', ' + item.datos.apellidos,
+                                    id: item.id,
+                                }
+                            })
+                        };
+                    }
+                }
+            });
+            
+            $("#familia").select2({
+                placeholder: "Selecciona tus Miembros de Familia",
+                allowClear: true,
+                language: {
+                    searching: function () {
+                        return "Buscando...";
+                    },
+
+                    errorLoading: function () {
+                        return "No se consiguieron coincidencias...";
+                    }
+                },
+                ajax: {
+                    url: "{{ route('select.familia') }}",
+                    dataType: 'json',
+                    type: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    data: function(term) {
+                        return {
+                            term: term,
+                        };
+                    },
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(item) {
+                                return {
+                                    text: item.nacionalidad + '-' + item.cedula + ' ' + item.nombres + ', ' + item.apellidos,
+                                    id: item.id,
+                                }
+                            })
+                        };
+                    }
+                }
+            });
+        });
     </script>
 @stop

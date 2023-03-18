@@ -29,7 +29,7 @@ class StoreCiudadanoRequest extends FormRequest
      * @return array<string, mixed>
      */
     public function rules()
-    {
+    {        
         return [
             'nombres' =>'required|string',
             'apellidos' => 'required|string',

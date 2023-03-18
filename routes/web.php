@@ -4,6 +4,7 @@ use App\Http\Controllers\CiudadanoController;
 use App\Http\Controllers\ComunaController;
 use App\Http\Controllers\ConcejoController;
 use App\Http\Controllers\InfanteController;
+use App\Http\Controllers\JefeController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\ParroquiaController;
 use App\Http\Controllers\RoleController;
@@ -46,8 +47,12 @@ Route::middleware([
 
     Route::get('ciudadano/excel', [CiudadanoController::class, 'export'])->name('ciudadanos.excel');
     Route::get('ciudadano/csv', [CiudadanoController::class, 'csv'])->name('ciudadanos.csv');
+    Route::get('ciudadano/select', [CiudadanoController::class, 'select'])->name('ciudadanos.select');
     
     Route::get('infante/excel', [InfanteController::class, 'excel'])->name('infantes.excel');
     Route::get('infante/csv', [InfanteController::class, 'csv'])->name('infantes.csv');
+
+    Route::post('select/jefes', [JefeController::class, 'select'])->name('select.jefes');
+    Route::post('select/familia', [CiudadanoController::class, 'select'])->name('select.familia');
 
 });
